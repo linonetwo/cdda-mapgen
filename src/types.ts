@@ -1,4 +1,4 @@
-import { TmcstOverMap } from './tmcst';
+import { TmcstOverMapTile } from './tmcst';
 
 export interface IGenerationDimensionParameters {
   /** Length of the X axis ↔ */
@@ -9,7 +9,7 @@ export interface IGenerationDimensionParameters {
   zLevels: number;
 }
 
-export interface ILabOvermap extends TmcstOverMap {
+export interface ILabOverMapTile extends TmcstOverMapTile {
   floorDown: boolean;
   floorUp: boolean;
 }

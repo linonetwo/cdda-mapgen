@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable security/detect-object-injection */
 import { TmcstWorld, TmcstBiome } from './tmcst';
-import { ILabOvermap, IGenerationDimensionParameters } from './types';
+import { ILabOverMapTile, IGenerationDimensionParameters } from './types';
 import { get3DEmptyArray } from './utils/fill';
 
 /**
@@ -15,14 +15,14 @@ export function generate(
 }
 
 /**
- * Generate lab biome
+ * Generate lab biome tile
  * @returns TmcstBiome
  */
 export function biomeLabGen(
   parameters: IGenerationDimensionParameters
 ): TmcstBiome<'lab'> {
   // define the generation rules here, and use later in the for-for-for loop
-  function getAnOverMap(x: number, y: number, z: number): ILabOvermap {
+  function getAnOverMapTile(x: number, y: number, z: number): ILabOverMapTile {
     return {
       floorDown: false,
       floorUp: false,
@@ -35,11 +35,11 @@ export function biomeLabGen(
   // Fill in the map
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore 'undefined' is not assignable to type 'ILabOvermap'
-  const overMapOfBiome: ILabOvermap[][][] = get3DEmptyArray(parameters);
+  const overMapOfBiome: ILabOverMapTile[][][] = get3DEmptyArray(parameters);
   for (let indexZ = 0; indexZ < parameters.zLevels; indexZ += 1) {
     for (let indexY = 0; indexY < parameters.height; indexY += 1) {
       for (let indexX = 0; indexX < parameters.width; indexX += 1) {
-        overMapOfBiome[indexZ]![indexY]![indexX] = getAnOverMap(
+        overMapOfBiome[indexZ]![indexY]![indexX] = getAnOverMapTile(
           indexX,
           indexY,
           indexZ
